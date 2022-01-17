@@ -5,7 +5,7 @@ import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
 import lombok.Data;
 
 import javax.persistence.*;
-
+import java.time.LocalDate;
 
 
 @Entity
@@ -31,6 +31,8 @@ public class UserRegistrationData {
     private String state;
     @Column(name = "type")
     private String type;
+
+    private LocalDate updatedDate;
 
     public UserRegistrationData() {
 

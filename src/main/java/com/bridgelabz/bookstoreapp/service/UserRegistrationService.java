@@ -2,6 +2,7 @@ package com.bridgelabz.bookstoreapp.service;
 
 import com.bridgelabz.bookstoreapp.dto.ForgotPasswordDto;
 import com.bridgelabz.bookstoreapp.dto.LoginDto;
+import com.bridgelabz.bookstoreapp.dto.ResetPassword;
 import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
 import com.bridgelabz.bookstoreapp.exception.UserRegistrationException;
 import com.bridgelabz.bookstoreapp.model.UserRegistrationData;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -114,6 +116,20 @@ public class UserRegistrationService implements  IUserRegistrationService{
             return "successfull";
         }
         throw new UserRegistrationException("Email id not found");
+    }
+    @Override
+    public UserRegistrationData resetPassword(ResetPassword resetpassword, String token) {
+        int id = Math.toIntExact(tokenUtil.decodeToken(token));
+
+        Optional<UserRegistrationData> userDetails = userRepo.findById(id);
+        if (resetpassword.getNewPassword().equals(resetpassword.getConfirmPassword())) {
+            if (userDetails.isPresent()) {
+                userDetails.get().setPassword(resetpassword.getNewPassword());
+                userDetails.get().setUpdatedDate(LocalDate.now());
+                return userRepo.save(userDetails.get());
+            }
+        }
+        return null;
     }
 
 }
