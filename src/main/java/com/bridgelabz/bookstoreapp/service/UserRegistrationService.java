@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstoreapp.service;
 
+import com.bridgelabz.bookstoreapp.dto.ForgotPasswordDto;
 import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
 import com.bridgelabz.bookstoreapp.exception.UserRegistrationException;
@@ -97,6 +98,22 @@ public class UserRegistrationService implements  IUserRegistrationService{
 
             return null;
         }
+    }
+    
+    @Override
+    public String forgotPassword(ForgotPasswordDto forgotPassword) {
+        String emailId = forgotPassword.getEmailId();
+        Optional<UserRegistrationData> isPresent = userRepo.findByEmailId(emailId);
+        if (isPresent.isPresent()) {
+            email.setTo(forgotPassword.getEmailId());
+            email.setFrom("bookstoremailapi@gmail.com");
+            email.setSubject("Reset Password Link");
+            String token = tokenUtil.createToken(isPresent.get().getId());
+            email.setBody(mailService.getLink("http://localhost:8080/userregistrationservice/resetpassword/" + token));
+            mailService.send(email.getTo(), email.getSubject(), email.getBody());
+            return "successfull";
+        }
+        throw new UserRegistrationException("Email id not found");
     }
 
 }

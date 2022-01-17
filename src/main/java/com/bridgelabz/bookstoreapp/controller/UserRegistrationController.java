@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstoreapp.controller;
 
+import com.bridgelabz.bookstoreapp.dto.ForgotPasswordDto;
 import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.ResponseDTO;
 import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
@@ -79,5 +80,12 @@ public class UserRegistrationController {
             return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
 
         }
+    }
+    
+    @PostMapping("/forgotpassword")
+    ResponseEntity<ResponseDTO> forgotpass(@Valid @RequestBody ForgotPasswordDto forgotpassword) {
+        String forgotPassword = service.forgotPassword(forgotpassword);
+        ResponseDTO response = new ResponseDTO("Reset Password link sent to Email  :", forgotPassword);
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 }
