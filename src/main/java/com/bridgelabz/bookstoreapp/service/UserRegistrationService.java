@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstoreapp.service;
 
+import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
 import com.bridgelabz.bookstoreapp.exception.UserRegistrationException;
 import com.bridgelabz.bookstoreapp.model.UserRegistrationData;
@@ -82,6 +83,20 @@ public class UserRegistrationService implements  IUserRegistrationService{
             return usersList;
         }
         return null;
+    }
+    @Override
+    public Optional<UserRegistrationData> UserLogin(LoginDto logindto) {
+
+        Optional<UserRegistrationData> userLogin = userRepo.findByEmailIdAndPassword(logindto.emailId, logindto.password);
+
+        if (userLogin.isPresent()) {
+            log.info("user logged in successfully");
+            return userLogin;
+        } else {
+            log.error("User not Found Exception:");
+
+            return null;
+        }
     }
 
 }

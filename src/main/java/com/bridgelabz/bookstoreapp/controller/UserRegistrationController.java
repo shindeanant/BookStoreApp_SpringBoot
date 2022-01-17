@@ -1,5 +1,6 @@
 package com.bridgelabz.bookstoreapp.controller;
 
+import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.ResponseDTO;
 import com.bridgelabz.bookstoreapp.dto.UserRegistrationDto;
 import com.bridgelabz.bookstoreapp.exception.UserRegistrationException;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/userregistrationservice")
@@ -65,5 +67,17 @@ public class UserRegistrationController {
             throw new UserRegistrationException("No Data Found");
         }
 
+    }
+    @PostMapping("/userlogin")
+    public ResponseEntity<ResponseDTO> userLogin(@RequestBody LoginDto logindto) {
+        Optional<UserRegistrationData> login = service.UserLogin(logindto);
+        if (login != null) {
+            ResponseDTO dto = new ResponseDTO("User login successfully:", tokenUtil.createToken(login.get().getId()));
+            return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
+        } else {
+            ResponseDTO dto = new ResponseDTO("User login not successfully:", login);
+            return new ResponseEntity<>(dto, HttpStatus.ACCEPTED);
+
+        }
     }
 }
