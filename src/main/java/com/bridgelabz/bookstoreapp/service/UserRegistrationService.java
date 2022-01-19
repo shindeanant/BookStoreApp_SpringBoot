@@ -57,7 +57,7 @@ public class UserRegistrationService implements  IUserRegistrationService{
             userData.createUser(userDTO);
             userRepo.save(userData);
             email.setTo(userData.getEmailId());
-            email.setFrom("bookstoremailapi@gmail.com");
+            email.setFrom("bookstoreapi1@gmail.com");
             email.setSubject(" User Verification...");
             token = tokenUtil.createToken(userData.getId());
             email.setBody(mailService.getLink("http://localhost:8080/userregistrationservice/verify/" + token));
@@ -108,14 +108,15 @@ public class UserRegistrationService implements  IUserRegistrationService{
         Optional<UserRegistrationData> isPresent = userRepo.findByEmailId(emailId);
         if (isPresent.isPresent()) {
             email.setTo(forgotPassword.getEmailId());
-            email.setFrom("bookstoremailapi@gmail.com");
+            email.setFrom("bookstoreapi1@gmail.com");
             email.setSubject("Reset Password Link");
             String token = tokenUtil.createToken(isPresent.get().getId());
             email.setBody(mailService.getLink("http://localhost:8080/userregistrationservice/resetpassword/" + token));
             mailService.send(email.getTo(), email.getSubject(), email.getBody());
             return "successfull";
         }
-        throw new UserRegistrationException("Email id not found");
+        return " Mail send to your account ";
+//        throw new UserRegistrationException("Email id not found");
     }
     @Override
     public UserRegistrationData resetPassword(ResetPassword resetpassword, String token) {
