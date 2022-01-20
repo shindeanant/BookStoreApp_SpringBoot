@@ -31,7 +31,7 @@ public class UserRegistrationData {
     private String state;
     @Column(name = "type")
     private String type;
-
+    @Column(name ="updateDate")
     private LocalDate updatedDate;
 
     public UserRegistrationData() {
