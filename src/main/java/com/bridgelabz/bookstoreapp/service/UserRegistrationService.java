@@ -93,6 +93,7 @@ public class UserRegistrationService implements  IUserRegistrationService{
 
         Optional<UserRegistrationData> userLogin = userRepo.findByEmailIdAndPassword(logindto.emailId, logindto.password);
         String pass =passwordEncoder.encode(logindto.getPassword());
+        String pass1 = passwordEncoder.encode(userLogin.get().getPassword());
         boolean isMatches = passwordEncoder.matches(logindto.getPassword(),userLogin.get().getPassword());
         if (userLogin.isPresent()) {
             log.info("user logged in successfully");
