@@ -16,11 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-<<<<<<< HEAD
-@CrossOrigin(origins = "",allowedHeaders = "")
-=======
 @CrossOrigin(origins = "*",allowedHeaders = "*")
->>>>>>> ce62fa8ff59e3234133eef9ebad991d2ede97e76
+
 @RequestMapping("/userregistrationservice")
 @Slf4j
 public class UserRegistrationController {

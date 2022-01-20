@@ -46,6 +46,7 @@ public class UserRegistrationService implements  IUserRegistrationService{
     public UserRegistrationData userRegistration(UserRegistrationDto userDTO) {
 
         Optional<UserRegistrationData> userCheck = userRepo.findByEmailId(userDTO.getEmailId());
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         if (userCheck.isPresent()) {
             log.error("Email already exists");
             throw new UserRegistrationException("email already exists");
@@ -91,7 +92,8 @@ public class UserRegistrationService implements  IUserRegistrationService{
     public Optional<UserRegistrationData> UserLogin(LoginDto logindto) {
 
         Optional<UserRegistrationData> userLogin = userRepo.findByEmailIdAndPassword(logindto.emailId, logindto.password);
-
+        String pass =passwordEncoder.encode(logindto.getPassword());
+        boolean isMatches = passwordEncoder.matches(logindto.getPassword(),userLogin.get().getPassword());
         if (userLogin.isPresent()) {
             log.info("user logged in successfully");
             return userLogin;
