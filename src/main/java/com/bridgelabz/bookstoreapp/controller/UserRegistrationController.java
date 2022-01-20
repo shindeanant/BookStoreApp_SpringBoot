@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*",allowedHeaders = "*")
+
 @RequestMapping("/userregistrationservice")
 @Slf4j
 public class UserRegistrationController {
