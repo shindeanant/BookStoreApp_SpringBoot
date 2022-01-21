@@ -11,8 +11,8 @@ import javax.validation.constraints.Pattern;
 @Data
 @ToString
 public class UserRegistrationDto {
-//    @Pattern(regexp = "^[A-Z]{1,}[a-zA-z\\s.]{2,}$", message = "FullName is invalid")
-//    @NotEmpty(message = "Name can not be NULL")
+    @Pattern(regexp = "^[A-Z]{1,}[a-zA-z\\s.]{2,}$", message = "FullName is invalid")
+    @NotEmpty(message = "Name can not be NULL")
     public String fullName;
     public String emailId;
     public String password;
