@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 
 @Data
@@ -17,9 +18,8 @@ public class UserRegistrationDto {
     public String emailId;
     public String password;
     public String mobileNo;
-    public String address;
-    public String city;
-    public String state;
-    public String type;
+    public LocalDate updatedDate;
+    public   LocalDate registerDate;
+    public String status;
 
 }
