@@ -113,7 +113,7 @@ public class UserRegistrationService implements  IUserRegistrationService{
             email.setFrom("bookstoreapi1@gmail.com");
             email.setSubject("Reset Password Link");
             String token = tokenUtil.createToken(isPresent.get().getId());
-            email.setBody(mailService.getLink("http://localhost:8080/userregistrationservice/resetpassword/" + token));
+            email.setBody(mailService.getLink("http://localhost:4200/reset/" + token));
             mailService.send(email.getTo(), email.getSubject(), email.getBody());
             return "successfull";
         }
@@ -121,7 +121,7 @@ public class UserRegistrationService implements  IUserRegistrationService{
 //        throw new UserRegistrationException("Email id not found");
     }
     @Override
-    public UserRegistrationData resetPassword(ResetPassword resetpassword, String token) {
+    public UserRegistrationData resetPassword(ResetPassword resetpassword, String token) throws UserRegistrationException {
         int id = Math.toIntExact(tokenUtil.decodeToken(token));
 
         Optional<UserRegistrationData> userDetails = userRepo.findById(id);
@@ -132,7 +132,8 @@ public class UserRegistrationService implements  IUserRegistrationService{
                 return userRepo.save(userDetails.get());
             }
         }
-        return null;
+          throw new UserRegistrationException(
+                "Something went wrong while changing your password, Please try again after some time.");
     }
 
 }
