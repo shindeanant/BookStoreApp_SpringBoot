@@ -15,24 +15,20 @@ public class UserRegistrationData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
-    @Column(name = "firstName")
+    @Column(name = "full_name")
     private String fullName;
-    @Column(name = "emailId")
+    @Column(name = "email_id")
     private String emailId;
     @Column(name = "password")
     private String password;
-    @Column(name = "mobileNo")
+    @Column(name = "mobile_no")
     private String mobileNo;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "city")
-    private String city;
-    @Column(name = "state")
-    private String state;
-    @Column(name = "type")
-    private String type;
-    @Column(name ="updateDate")
+    @Column(name ="update_date")
     private LocalDate updatedDate;
+    @Column(name = "registerd_date")
+    private  LocalDate registerDate;
+    @Column(name = "status")
+    private String status;
 
     public UserRegistrationData() {
 
@@ -43,10 +39,9 @@ public class UserRegistrationData {
         this.emailId = userDTO.emailId;
         this.password = userDTO.password;
         this.mobileNo = userDTO.mobileNo;
-        this.address = userDTO.address;
-        this.city = userDTO.city;
-        this.state = userDTO.state;
-        this.type = userDTO.type;
+        this.updatedDate =userDTO.updatedDate;
+        this.registerDate=userDTO.registerDate;
+        this.status=userDTO.status;
 
     }
 
@@ -55,10 +50,9 @@ public class UserRegistrationData {
         this.emailId = userDTO.emailId;
         this.password = userDTO.password;
         this.mobileNo = userDTO.mobileNo;
-        this.address = userDTO.address;
-        this.city = userDTO.city;
-        this.state = userDTO.state;
-        this.type = userDTO.type;
+        this.updatedDate =userDTO.updatedDate;
+        this.registerDate=userDTO.registerDate;
+        this.status=userDTO.status;
 
     }
 }
