@@ -5,5 +5,6 @@ import com.bridgelabz.bookstoreapp.model.BookDetails;
 import java.util.List;
 
 public interface IBookDetailsService {
-    List<BookDetails> showAllBooks(String token);
+
+    List<BookDetails> showingAllBooks();
 }
