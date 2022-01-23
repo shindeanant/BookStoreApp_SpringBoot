@@ -31,10 +31,15 @@ public class UserRegistrationController {
 
 
     @RequestMapping(value = {"", "/", "/get"})
-    public ResponseEntity<ResponseDTO> getUserData() {
+    public ResponseEntity<ResponseDTO> getUserData() throws NullPointerException{
         List<UserRegistrationData> usersList = service.getUserDeatils();
-        ResponseDTO response = new ResponseDTO("Get call success", usersList);
-        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+        if(usersList==null) {
+        	throw new NullPointerException();
+        	
+        }
+        	ResponseDTO response = new ResponseDTO("Get call success", usersList);
+        	return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+        
     }
 
     @PostMapping("/register")
