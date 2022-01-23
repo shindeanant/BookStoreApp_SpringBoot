@@ -33,7 +33,7 @@ public class BookDetailsService implements IBookDetailsService{
     TokenUtil tokenUtil;
 
     @Override
-    public List<BookDetails> showingAllBooks() {
+    public List<BookDetails> showAllBooks() {
         List<BookDetails> allBooks = bookRepo.findAll();
             return allBooks;
     }
