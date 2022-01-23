@@ -33,14 +33,10 @@ public class BookDetailsService implements IBookDetailsService{
     TokenUtil tokenUtil;
 
     @Override
-    public List<BookDetails> showAllBooks(String token) {
-        int id = Math.toIntExact(tokenUtil.decodeToken(token));
-        Optional<UserRegistrationData> isPresent = userRepo.findById(id);
-        if (isPresent.isPresent()) {
-            List<BookDetails> allBooks = bookRepo.findAll();
+    public List<BookDetails> showAllBooks() {
+        List<BookDetails> allBooks = bookRepo.findAll();
             return allBooks;
-        } else return null;
-    }
+        } 
    
     public BookDetails findBookById(int id) {
     	return bookRepo.findById(id)

@@ -28,8 +28,8 @@ public class BookDetailsController {
     private TokenUtil tokenUtil;
 
     @RequestMapping(value = {"", "/", "/getbooks"})
-    public ResponseEntity<ResponseDTO> getAllBooks(@RequestHeader(name = "token") String token ) {
-        List<BookDetails> allBooks = bookService.showAllBooks(token);
+    public ResponseEntity<ResponseDTO> getAllBooks() {
+        List<BookDetails> allBooks = bookService.showAllBooks();
         ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", allBooks);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IBookDetailsService {
 
-    List<BookDetails> showAllBooks(String token);
+    List<BookDetails> showAllBooks();
 
 	BookDetails getBookByID(int id);
 
