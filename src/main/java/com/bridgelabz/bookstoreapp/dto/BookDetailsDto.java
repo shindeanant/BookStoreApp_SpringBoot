@@ -17,6 +17,7 @@ public class BookDetailsDto {
     public String bookDescription;
     public String bookLogo;
     public int bookPrice;
-    public int bookQuantity;
-    public Float bookRating;
+    //public int bookQuantity;
+    //public Float bookRating;
+
 }
