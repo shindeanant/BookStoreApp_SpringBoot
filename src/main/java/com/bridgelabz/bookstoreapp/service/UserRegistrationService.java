@@ -1,5 +1,5 @@
 package com.bridgelabz.bookstoreapp.service;
-
+//import java.util.Base64;  
 import com.bridgelabz.bookstoreapp.dto.ForgotPasswordDto;
 import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.ResetPassword;
@@ -47,16 +47,12 @@ public class UserRegistrationService implements  IUserRegistrationService{
 
         Optional<UserRegistrationData> userCheck = userRepo.findByEmailId(userDTO.getEmailId());
 
-//        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-
         if (userCheck.isPresent()) {
             log.error("Email already exists");
             throw new UserRegistrationException("email already exists");
         } else {
             UserRegistrationData userData = new UserRegistrationData();
-//        String pwd = userData.getPassword();
-//        String encryptpwd = passwordEncoder.encode(pwd);
-//        userData.setPassword(encryptpwd);
+            userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             userData.createUser(userDTO);
             userRepo.save(userData);
             email.setTo(userData.getEmailId());
@@ -93,15 +89,11 @@ public class UserRegistrationService implements  IUserRegistrationService{
     @Override
     public Optional<UserRegistrationData> UserLogin(LoginDto logindto) {
 
-        Optional<UserRegistrationData> userLogin = userRepo.findByEmailIdAndPassword(logindto.emailId, logindto.password);
+        Optional<UserRegistrationData> userLogin = userRepo.findByEmailId(logindto.emailId);
 
-       String pass =passwordEncoder.encode(logindto.getPassword());
-
-
-       // String pass1 = passwordEncoder.encode(userLogin.get().getPassword());
-
-        boolean isMatches = passwordEncoder.matches(logindto.getPassword(),userLogin.get().getPassword());
-        if (userLogin.isPresent()) {
+        String pass= userLogin.get().getPassword();
+        boolean isMatches = passwordEncoder.matches(logindto.getPassword(),pass);
+        if (userLogin.isPresent() && isMatches) {
             log.info("user logged in successfully");
             return userLogin;
         } else {
@@ -134,8 +126,9 @@ public class UserRegistrationService implements  IUserRegistrationService{
         Optional<UserRegistrationData> userDetails = userRepo.findById(id);
         if (resetpassword.getNewPassword().equals(resetpassword.getConfirmPassword())) {
             if (userDetails.isPresent()) {
-                userDetails.get().setPassword(resetpassword.getNewPassword());
+                userDetails.get().setPassword(passwordEncoder.encode(resetpassword.getNewPassword()));
                 userDetails.get().setUpdatedDate(LocalDate.now());
+
                 return userRepo.save(userDetails.get());
             }
         }

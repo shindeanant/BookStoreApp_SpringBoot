@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface UserRegistrationRepository extends JpaRepository<UserRegistrationData, Integer> {
     @Query(value = "select * from userregistration where email_Id= :emailId", nativeQuery = true)
     Optional<UserRegistrationData> findByEmailId(String emailId);
-
-    Optional<UserRegistrationData> findByEmailIdAndPassword(String email_Id, String password);
+//    @Query(value = "select email_id,password from userregistration where email_Id= :emailId", nativeQuery = true)
+ //   Optional<UserRegistrationData> findByEmailIdAndPassword(String emailId,String password);
 }
 
 
