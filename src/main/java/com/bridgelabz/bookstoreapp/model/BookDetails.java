@@ -19,4 +19,11 @@ public class BookDetails {
     private String bookLogo;
     @Column (name = "bookPrice")
     private int bookPrice;
+    @Column (name = "bookQuantity")
+    private int bookQuantity;
+    @Column (name = "bookRating")
+    private Float bookRating;
+    @Column (name = "bookImage")
+    private String bookImage;
+    
 }
