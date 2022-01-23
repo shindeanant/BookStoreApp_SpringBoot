@@ -23,7 +23,5 @@ public class BookDetails {
     private int bookQuantity;
     @Column (name = "bookRating")
     private Float bookRating;
-    @Column (name = "bookImage")
-    private String bookImage;
     
 }

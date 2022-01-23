@@ -24,10 +24,12 @@ public class BookDetailsController {
     @Autowired
     private IBookDetailsService bookService;
 
+    @Autowired
+    private TokenUtil tokenUtil;
 
     @RequestMapping(value = {"", "/", "/getbooks"})
-    public ResponseEntity<ResponseDTO> getAllBooks() {
-        List<BookDetails> allBooks = bookService.showingAllBooks();
+    public ResponseEntity<ResponseDTO> getAllBooks(@RequestHeader(name = "token") String token ) {
+        List<BookDetails> allBooks = bookService.showAllBooks(token);
         ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", allBooks);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }

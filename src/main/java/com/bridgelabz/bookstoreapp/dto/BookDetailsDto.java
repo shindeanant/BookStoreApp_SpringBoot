@@ -19,5 +19,4 @@ public class BookDetailsDto {
     public int bookPrice;
     public int bookQuantity;
     public Float bookRating;
-    public String bookImage;
 }
