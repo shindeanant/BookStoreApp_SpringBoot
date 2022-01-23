@@ -1,5 +1,5 @@
 package com.bridgelabz.bookstoreapp.service;
-
+//import java.util.Base64;  
 import com.bridgelabz.bookstoreapp.dto.ForgotPasswordDto;
 import com.bridgelabz.bookstoreapp.dto.LoginDto;
 import com.bridgelabz.bookstoreapp.dto.ResetPassword;
