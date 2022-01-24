@@ -36,17 +36,17 @@ public class BookDetailsService implements IBookDetailsService{
     public List<BookDetails> showAllBooks() {
         List<BookDetails> allBooks = bookRepo.findAll();
             return allBooks;
-        } 
-   
-    public BookDetails findBookById(int id) {
-    	return bookRepo.findById(id)
-                .orElseThrow(() -> new UserRegistrationException("Unable to find any Book detail!"));
-    }
+    } 
     
 	@Override
-	public BookDetails getBookByID(int id) {
-		BookDetails bookDetails = findBookById(id);
-        //BookDetailsDto bookDetailsById = modelMapper.map(bookDetails, BookDetailsDto.class);
-        return bookDetails;
+	public Optional<BookDetails> getBookByID(int id) {
+		Optional<BookDetails> bookDetails = bookRepo.findById(id);
+		if(bookDetails!= null) {
+			return bookDetails;
+		}
+		else {
+			throw new UserRegistrationException("Unable to find any Book detail!");
+		}
+		
 	}
 }

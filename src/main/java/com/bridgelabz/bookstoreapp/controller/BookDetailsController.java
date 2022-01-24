@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bookservice")
@@ -23,18 +24,18 @@ public class BookDetailsController {
     @Autowired
     private TokenUtil tokenUtil;
 
-    @RequestMapping(value = {"", "/", "/getbooks"})
+    @GetMapping(value = {"", "/", "/getBooks"})
     public ResponseEntity<ResponseDTO> getAllBooks() {
         List<BookDetails> allBooks = bookService.showAllBooks();
         ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", allBooks);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
     
-    @GetMapping(value = "/getBookDetailsByID/{id}")
+    @GetMapping(value = "/Book/{id}")
     public ResponseEntity<ResponseDTO> getBookDetailsByID(@PathVariable(name = "id") int id) {
         log.info("getBookDetailsByID");
         log.info(String.valueOf(id));
-        BookDetails bookDTO = bookService.getBookByID(id);
+        Optional<BookDetails> bookDTO = bookService.getBookByID(id);
         ResponseDTO responseDTO = new ResponseDTO("Fetched by ID : Book Details", bookDTO);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }

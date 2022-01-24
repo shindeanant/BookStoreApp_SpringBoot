@@ -30,7 +30,7 @@ public class UserRegistrationController {
     private TokenUtil tokenUtil;
 
 
-    @RequestMapping(value = {"", "/", "/get"})
+    @GetMapping(value = {"", "/", "/get"})
     public ResponseEntity<ResponseDTO> getUserData() throws NullPointerException{
         List<UserRegistrationData> usersList = service.getUserDeatils();
         if(usersList==null) {
