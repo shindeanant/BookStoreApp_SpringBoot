@@ -28,9 +28,9 @@ public class BookDetails {
 //    @Column (name = "bookRating")
 //    private Float bookRating;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="bookDetails",cascade = CascadeType.ALL)
     //@JoinColumn(name = "Id")
-	private List<Cart> cart  = new ArrayList<>();
+	private List<Cart> cart;
    
 }
 

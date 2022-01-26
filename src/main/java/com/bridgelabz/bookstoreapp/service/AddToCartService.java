@@ -5,17 +5,19 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.bookstoreapp.dto.BookDetailsDto;
 import com.bridgelabz.bookstoreapp.model.Cart;
 import com.bridgelabz.bookstoreapp.repository.CartRepository;
-
+@ComponentScan({"com.bridgelabz.bookstoreapp"})
 @Service
 public class AddToCartService implements IAddToCartService{
 
 	@Autowired 
-	BookDetailsDto book;
+	BookDetailsDto bookDetailsDto;
+	
     @Autowired
     CartRepository cartRepository;
 
