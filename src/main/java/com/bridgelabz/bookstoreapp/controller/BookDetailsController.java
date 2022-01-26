@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bookservice")
 @Slf4j
+@CrossOrigin(allowedHeaders = "*",origins = "*")
 public class BookDetailsController {
     @Autowired
     private IBookDetailsService bookService;
