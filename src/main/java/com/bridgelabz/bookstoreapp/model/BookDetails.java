@@ -2,11 +2,15 @@ package com.bridgelabz.bookstoreapp.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Data
 @Entity
 public class BookDetails {
+	
     @Id
     private int bookId;
     @Column( name = "bookName")
@@ -23,6 +27,10 @@ public class BookDetails {
 //    private int bookQuantity;
 //    @Column (name = "bookRating")
 //    private Float bookRating;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "Id")
+	private List<Cart> cart  = new ArrayList<>();
    
 }
 

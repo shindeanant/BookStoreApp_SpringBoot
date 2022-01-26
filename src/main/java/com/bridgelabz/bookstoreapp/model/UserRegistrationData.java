@@ -55,4 +55,9 @@ public class UserRegistrationData {
         this.status=userDTO.status;
 
     }
+    
+//    @OneToOne
+//    @JoinColumn(name="Id")
+//    private Cart cart;
+   
 }
