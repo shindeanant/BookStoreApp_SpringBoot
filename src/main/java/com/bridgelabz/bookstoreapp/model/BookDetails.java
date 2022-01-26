@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class BookDetails {
 	
     @Id
+    @JoinColumn(name = "bookId",referencedColumnName ="Id")
     private int bookId;
     @Column( name = "bookName")
     private String bookName;
@@ -28,9 +29,7 @@ public class BookDetails {
 //    @Column (name = "bookRating")
 //    private Float bookRating;
     
-    @OneToMany(mappedBy="bookDetails",cascade = CascadeType.ALL)
-    //@JoinColumn(name = "Id")
-	private List<Cart> cart;
+    
    
 }
 

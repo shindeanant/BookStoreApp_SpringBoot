@@ -5,11 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.bookstoreapp.dto.BookDetailsDto;
+import com.bridgelabz.bookstoreapp.dto.CartDto;
 import com.bridgelabz.bookstoreapp.dto.ResponseDTO;
+import com.bridgelabz.bookstoreapp.model.BookDetails;
+import com.bridgelabz.bookstoreapp.model.Cart;
+import com.bridgelabz.bookstoreapp.repository.CartRepository;
 import com.bridgelabz.bookstoreapp.service.AddToCartService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +24,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AddToCartController {
 
+	@Autowired
+    private AddToCartService addToCartService;
+
     @Autowired
-    AddToCartService addToCartService;
+    CartRepository cartRepo;
 
-    @PostMapping(value = "/addCartDetails")
-    public ResponseEntity<ResponseDTO> addToCartDetails(@RequestBody BookDetailsDto bookDTO) {
-        BookDetailsDto addCartData = addToCartService.addToCart(bookDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Added Cart Details", addCartData);
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
-
+    @PostMapping("/add")
+    ResponseEntity<ResponseDTO> addToCart(@RequestBody CartDto cartDTO) {
+    	Cart add = addToCartService.addToCart(cartDTO);
+    	ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", add);
+    	return new ResponseEntity<>(dto, HttpStatus.OK);
+    	
+		
     }
 }
