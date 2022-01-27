@@ -1,11 +1,6 @@
 package com.bridgelabz.bookstoreapp.service;
 
-<<<<<<< HEAD
-=======
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
->>>>>>> ce5ccf8cb39e65a81392ca004ac123201efe1ae8
+
 
 import com.bridgelabz.bookstoreapp.repository.BookDetailsRepository;
 import org.modelmapper.ModelMapper;
