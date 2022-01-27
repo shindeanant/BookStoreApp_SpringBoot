@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class BookDetails {
 	
     @Id
+    @JoinColumn(name = "bookId",referencedColumnName ="Id")
     private int bookId;
     @Column( name = "bookName")
     private String bookName;

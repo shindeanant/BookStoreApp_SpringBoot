@@ -21,7 +21,7 @@ public class BookDetailsDto {
     public String bookDescription;
     public String bookLogo;
     public int bookPrice;
-//    private List<Cart> cart  = new ArrayList<>();
+
     //public int bookQuantity;
     //public Float bookRating;
 

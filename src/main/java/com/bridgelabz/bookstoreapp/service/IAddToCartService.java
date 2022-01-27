@@ -3,9 +3,12 @@ package com.bridgelabz.bookstoreapp.service;
 import java.util.List;
 
 import com.bridgelabz.bookstoreapp.dto.BookDetailsDto;
+import com.bridgelabz.bookstoreapp.dto.CartDto;
+import com.bridgelabz.bookstoreapp.model.BookDetails;
+import com.bridgelabz.bookstoreapp.model.Cart;
 
 public interface IAddToCartService {
 
-	BookDetailsDto addToCart(BookDetailsDto bookDetailsDto);
+	Cart addToCart(CartDto cartDTO);
 
 }
