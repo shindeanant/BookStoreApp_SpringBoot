@@ -26,17 +26,18 @@ public class Orders {
 
     @Column(name="book_total_price")
     private String totalPrice;
+
+    private LocalDate orderDate;
+    private int price;
+    private int quantity;
+    private String address;
+    private int Id;
+    private int bookId;
 //
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="orderFk")
     private Cart cart;
 
 
-	private LocalDate orderDate;
-	private int price;
-	private int quantity;
-	private String address;
-	private int Id;
-	private int bookId;
 }
 

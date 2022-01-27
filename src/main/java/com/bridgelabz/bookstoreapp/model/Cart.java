@@ -28,28 +28,27 @@ public class Cart {
     public String bookDescription;
     public String bookLogo;
     public int bookPrice;
-    
+    private int quantity;
+
 //    private BookDetailsDto bookDetailsDto;
 
-//    @OneToOne(mappedBy="cart")
-//    private UserRegistrationData user;
+    @OneToOne(mappedBy="cart")
+    private UserRegistrationData user;
 //    
-//    @OneToOne(mappedBy="cart")
-//    private Orders order; 
-    
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cartId_fk",referencedColumnName = "cart_id")
-    private List<BookDetails> bookDetailsList;
-    
+    @OneToOne(mappedBy="cart")
+    private Orders order;
 
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    private int id;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "cartId_fk",referencedColumnName = "cart_id")
+//    private List<BookDetails> bookDetailsListcart;
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL);
+    private List<BookDetails> bookList;
 
-	   
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "userId")
-	    private UserRegistrationData userRegistrationData;
+
+//
+//	    @ManyToOne(fetch = FetchType.LAZY)
+//	    @JoinColumn(name = "userId")
+//	    private UserRegistrationData userRegistrationData;
 
 
 	    
@@ -57,7 +56,7 @@ public class Cart {
 //	    @JoinColumn(name = "bookId")
 //	    private Optional<BookDetails>  bookDetails;
 //
-//	    private int quantity;
+//
 //
 //
 //	    public Cart(UserRegistrationData userRegistrationData, Optional<BookDetails>  bookDetails, int quantity) {
@@ -66,7 +65,7 @@ public class Cart {
 //	        this.quantity = quantity;
 //	    }
 
-	    public Cart() {
-
-	    }
+//	    public Cart() {
+//
+//	    }
 }

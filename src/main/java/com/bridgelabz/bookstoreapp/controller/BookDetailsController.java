@@ -1,6 +1,5 @@
 package com.bridgelabz.bookstoreapp.controller;
 
-import com.bridgelabz.bookstoreapp.dto.BookDetailsDto;
 import com.bridgelabz.bookstoreapp.dto.ResponseDTO;
 import com.bridgelabz.bookstoreapp.model.BookDetails;
 import com.bridgelabz.bookstoreapp.service.IBookDetailsService;
@@ -37,7 +36,7 @@ public class BookDetailsController {
         log.info("getBookDetailsByID");
         log.info(String.valueOf(id));
         Optional<BookDetails> bookDTO = bookService.getBookByID(id);
-        ResponseDTO responseDTO = new ResponseDTO("Fetched by ID : Book Details", bookDTO);
+        ResponseDTO responseDTO = new ResponseDTO("getting book by id", bookDTO);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

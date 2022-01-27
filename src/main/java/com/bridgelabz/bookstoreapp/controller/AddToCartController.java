@@ -30,10 +30,10 @@ public class AddToCartController {
     @Autowired
     CartRepository cartRepo;
 
-    @PostMapping("/add")
-    ResponseEntity<ResponseDTO> addToCart(@RequestBody CartDto cartDTO) {
-    	Cart add = addToCartService.addToCart(cartDTO);
-    	ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", add);
+    @PostMapping("/addcart")
+    ResponseEntity<ResponseDTO> addToCart(@RequestBody CartDto cartDto) {
+    	Cart addCart = addToCartService.addToCart(cartDto);
+    	ResponseDTO dto = new ResponseDTO("All Books Retrieved successfully:", addCart);
     	return new ResponseEntity<>(dto, HttpStatus.OK);
     	
 		

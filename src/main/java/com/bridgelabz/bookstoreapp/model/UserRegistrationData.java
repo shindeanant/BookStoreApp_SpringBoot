@@ -36,6 +36,10 @@ public class UserRegistrationData {
     @JoinColumn(name="cartFk")
     private Cart cart;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bookfk",referencedColumnName = "id")
+    private List<BookDetails> bookDetailsList;
+
     public UserRegistrationData() {
 
     }
