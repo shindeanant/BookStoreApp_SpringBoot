@@ -2,11 +2,15 @@ package com.bridgelabz.bookstoreapp.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Data
 @Entity
 public class BookDetails {
+	
     @Id
     private int bookId;
     @Column( name = "bookName")
@@ -19,5 +23,12 @@ public class BookDetails {
     private String bookLogo;
     @Column (name = "bookPrice")
     private int bookPrice;
+//    @Column (name = "bookQuantity")
+//    private int bookQuantity;
+//    @Column (name = "bookRating")
+//    private Float bookRating;
+    
+
+   
 }
 

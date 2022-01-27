@@ -4,13 +4,12 @@ import com.bridgelabz.bookstoreapp.dto.BookDetailsDto;
 import com.bridgelabz.bookstoreapp.model.BookDetails;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IBookDetailsService {
 
     List<BookDetails> showAllBooks();
 
-	BookDetails getBookByID(int id);
-
-	BookDetails findBookById(int id);
+	Optional<BookDetails> getBookByID(int id);
 
 }
