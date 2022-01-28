@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class BookDetails {
 	
     @Id
-    @JoinColumn(name = "bookId",referencedColumnName ="Id")
+    @Column (name = "book_id")
     private int bookId;
     @Column( name = "bookName")
     private String bookName;
@@ -32,9 +32,9 @@ public class BookDetails {
     @ManyToMany(mappedBy = "bookDetailsListuser")
     private List<UserRegistrationData> bookDetailsListuser;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cartId_fk",referencedColumnName = "id")
-    private Cart cart;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "cartId_fk")
+//    private Cart cart;
 
 
    

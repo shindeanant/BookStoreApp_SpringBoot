@@ -23,14 +23,7 @@ public class Cart {
     @Id
     @Column(name = "cart_id")
     private int cartId;
-    public String bookName;
-    public String bookAuthor;
-    public String bookDescription;
-    public String bookLogo;
-    public int bookPrice;
     private int quantity;
-
-//    private BookDetailsDto bookDetailsDto;
 
     @OneToOne(mappedBy="cart")
     private UserRegistrationData user;
@@ -38,11 +31,11 @@ public class Cart {
     @OneToOne(mappedBy="cart")
     private Orders order;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "cartId_fk",referencedColumnName = "cart_id")
-//    private List<BookDetails> bookDetailsListcart;
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL);
-    private List<BookDetails> bookList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cartId_fk",referencedColumnName = "cart_id")
+    private List<BookDetails> bookDetailsListcart;
+//    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+//    private List<BookDetails> bookList;
 
 
 //
