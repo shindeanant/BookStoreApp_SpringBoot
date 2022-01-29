@@ -49,4 +49,14 @@ public class BookDetailsService implements IBookDetailsService{
 		}
 		
 	}
+    @Override
+    public BookDetails getBookByIdToken(String token, int bookId) {
+        int id = Math.toIntExact(tokenUtil.decodeToken(token));
+        Optional<UserRegistrationData> isPresent = userRepo.findById(id);
+        if (isPresent.isPresent()) {
+            return bookRepo.findByBookId(bookId)
+                    .orElseThrow(() -> new UserRegistrationException("Book  with id " + bookId + " does not exist in database..!"));
+        }
+        return null;
+    }
 }

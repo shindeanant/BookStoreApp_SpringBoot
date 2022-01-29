@@ -15,7 +15,7 @@ import java.util.List;
 public class UserRegistrationData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int id;
     @Column(name = "full_name")
     private String fullName;
     @Column(name = "email_id")
@@ -31,14 +31,10 @@ public class UserRegistrationData {
     @Column(name = "status")
     private String status;
 
+//    @OneToOne(mappedBy = "user")
+//    private CartData cid;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="cartFk")
-    private Cart cart;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bookfk")
-    private List<BookDetails> bookDetailsListuser;
 
     public UserRegistrationData() {
 

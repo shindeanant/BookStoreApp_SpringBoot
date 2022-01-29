@@ -29,8 +29,8 @@ public class BookDetails {
 //    @Column (name = "bookRating")
 //    private Float bookRating;
     
-    @ManyToMany(mappedBy = "bookDetailsListuser")
-    private List<UserRegistrationData> bookDetailsListuser;
+//    @ManyToMany(mappedBy = "bookDetailsListuser")
+//    private List<UserRegistrationData> bookDetailsListuser;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "cartId_fk")

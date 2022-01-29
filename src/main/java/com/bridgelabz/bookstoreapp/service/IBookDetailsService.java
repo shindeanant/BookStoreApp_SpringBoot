@@ -12,4 +12,7 @@ public interface IBookDetailsService {
 
 	Optional<BookDetails> getBookByID(int id);
 
+    BookDetails getBookByIdToken(String token, int bookId);
+
+
 }

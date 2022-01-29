@@ -135,5 +135,9 @@ public class UserRegistrationService implements  IUserRegistrationService{
           throw new UserRegistrationException(
                 "Something went wrong while changing your password, Please try again after some time.");
     }
+    public UserRegistrationData getUserById(int userId) {
+        return userRepo.findById(userId)
+                .orElseThrow(() -> new UserRegistrationException("User  with id " + userId + " does not exist in database..!"));
+    }
 
 }

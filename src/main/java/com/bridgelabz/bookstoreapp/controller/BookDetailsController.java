@@ -39,4 +39,11 @@ public class BookDetailsController {
         ResponseDTO responseDTO = new ResponseDTO("getting book by id", bookDTO);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+    @GetMapping("/getBook/{bookId}")
+    public ResponseEntity<ResponseDTO> getOneBook(@RequestHeader(name = "token") String token,@PathVariable int bookId)
+    {
+        BookDetails getOneBook = bookService.getBookByIdToken(token,bookId);
+        ResponseDTO dto = new ResponseDTO("Book retrieved successfully"+bookId, getOneBook);
+        return new ResponseEntity<>(dto,HttpStatus.OK);
+    }
 }
