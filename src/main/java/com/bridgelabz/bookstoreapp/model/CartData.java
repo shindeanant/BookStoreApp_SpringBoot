@@ -2,11 +2,11 @@ package com.bridgelabz.bookstoreapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
+
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-@Proxy(lazy = false)
+//@Proxy(lazy = false)
 @Entity
 @Table(name = "Cart")
 @Data
@@ -17,12 +17,12 @@ public class CartData {
     private int id;
 
 //    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-    @OneToOne(fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "userId")
     private UserRegistrationData user;
 
 //    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bookId")
     private BookDetails book;
 
