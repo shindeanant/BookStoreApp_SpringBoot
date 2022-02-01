@@ -1,10 +1,12 @@
 package com.bridgelabz.bookstoreapp.controller;
 
 import com.bridgelabz.bookstoreapp.dto.CartDto;
+import com.bridgelabz.bookstoreapp.dto.ResponseCart;
 import com.bridgelabz.bookstoreapp.dto.ResponseDTO;
 import com.bridgelabz.bookstoreapp.model.CartData;
 import com.bridgelabz.bookstoreapp.repository.CartRepository;
 import com.bridgelabz.bookstoreapp.service.ICartService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(allowedHeaders = "*",origins = "*")
 @RequestMapping("/cart")
 public class CartController {
 
@@ -22,10 +25,11 @@ public class CartController {
     @Autowired
     CartRepository cartRepo;
 
-    @PostMapping("/add")
-    ResponseEntity<ResponseDTO> addToCart(@RequestHeader(name = "token") String token, @RequestBody CartDto cartDTO) {
-        CartData add = cartService.addToCart(token, cartDTO);
-        ResponseDTO response = new ResponseDTO("Product Added To Cart ", add);
+    @PostMapping("/add/{bookid}")
+    ResponseEntity<ResponseDTO> addToCart(@RequestHeader(name = "token") String token,@PathVariable int bookid ,@RequestBody CartDto cartDTO) {
+        CartData add = cartService.addToCart(token, bookid, cartDTO);
+
+        ResponseDTO response = new ResponseDTO("product added to cart",add);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
@@ -50,10 +54,10 @@ public class CartController {
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/getAll")
-    ResponseEntity<ResponseDTO> findAllCarts() {
-        List<CartData> allItems = cartRepo.findAll();
-        ResponseDTO response = new ResponseDTO("All Items in Cart ", allItems);
-        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
-    }
+//    @GetMapping("/getAll")
+//    ResponseEntity<ResponseDTO> findAllCarts() {
+//        List<CartData> allItems = cartRepo.findAll();
+//        ResponseDTO response = new ResponseDTO("All Items in Cart ", allItems);
+//        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+//    }
 }

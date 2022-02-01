@@ -31,11 +31,14 @@ public class CartService implements ICartService{
     UserRegistrationRepository userRepo;
 
     @Override
-    public CartData addToCart(String token , CartDto cartDTO) {
-        Optional<UserRegistrationData> user = Optional.ofNullable(userService.getUserById(cartDTO.userId));
-        if(user.isPresent()) {
-            BookDetails book = bookService.getBookByIdToken(token,cartDTO.bookId);
-            CartData cart = new CartData(user.get(), book, cartDTO.quantity);
+    public CartData addToCart(String token ,int bookid, CartDto cartDTO) {
+        int id = Math.toIntExact(tokenUtil.decodeToken(token));
+        Optional<UserRegistrationData> usersData = userRepo.findById(Math.toIntExact((id)));
+        //Optional<UserRegistrationData> user = Optional.ofNullable(userService.getUserById(cartDTO.userId));
+        if(usersData.isPresent()) {
+
+            BookDetails book = bookService.getBookByIdToken(token,bookid);
+            CartData cart = new CartData(usersData.get(), book, cartDTO.quantity);
             return cartRepo.save(cart);
         }
         return null;
