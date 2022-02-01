@@ -48,10 +48,10 @@ public class CartController {
     }
 
     @GetMapping("/get")
-    ResponseEntity<ResponseDTO> findAllCartsByUser(@RequestHeader(name = "token") String token) {
+    ResponseEntity<ResponseCart> findAllCartsByUser(@RequestHeader(name = "token") String token) {
         List<CartData> allItemsForUser = cartService.findAllInCart(token);
-        ResponseDTO response = new ResponseDTO("All Items in Cart for user ", allItemsForUser);
-        return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
+        ResponseCart response= new ResponseCart(allItemsForUser);
+        return new ResponseEntity<ResponseCart>(response, HttpStatus.OK);
     }
 
 //    @GetMapping("/getAll")
